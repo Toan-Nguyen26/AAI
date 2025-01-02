@@ -1,0 +1,80 @@
+[
+    {
+        "name": "ask_about_person_organize",
+        "description": "Use this function when a user's question is about personal information pertaining to individuals or an organization that is not related to parenting topics."
+    },
+    {
+        "name": "normal_talk_irrelevant_to_parenting",
+        "description": "Use this function when a user's message is a normal dialogue conversation, talk, or a question about a topic that is not related to parenting, children, or kids."
+    },
+    {
+        "name": "check_childs_weight_height_with_age",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "gender": {
+                    "type": "string",
+                    "description": "The gender of the child. If the user's child is a son, boy, or male, then the gender value returned is 'male'. If the user's child is a girl, the gender value returned is 'female'. Otherwise, return null."
+                },
+                "years_old": {
+                    "type": "integer",
+                    "description": "The number of years old given. If the user doesn't specify the age in years, it is set to 0 by default. Example: if the user says 5 months old, then years_old is 0, and months_old is 5."
+                },
+                "months_old": {
+                    "type": "integer",
+                    "description": "The number of months old given. If the user doesn't specify the age in months, it is set to 0 by default. Example: if the user says 3 years and 11 months old, then years_old is 3, and months_old is 11."
+                },
+                "height": {
+                    "type": "number",
+                    "description": "The child's height measured in centimeters (cm). If the user doesn't specify the height, it is set to null."
+                },
+                "weight": {
+                    "type": "number",
+                    "description": "The child's weight measured in kilograms (kg). If the user doesn't specify the weight, it is set to null."
+                }
+            }
+        },
+        "description": "This function assesses a child's weight and height based on age and gender. The user can provide the child's age, height, and weight to determine if they fall within a healthy range."
+    },
+    {
+        "name": "detect_anomaly_milestone_growth_by_age",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "anomaly_category": {
+                    "type": "string",
+                    "description": "The category of anomaly the user's child encounters. One of the values: 'physical', 'mental', or 'others'."
+                }
+            }
+        },
+        "description": "Parents worry about their child's development compared to the general development of their peers of the same age."
+    },
+    {
+        "name": "children_games",
+        "description": "The user's question asks for suggestions of games or activities to play with their children during the summer, as well as alternatives to screen time."
+    },
+    {
+        "name": "get_parenting_tips",
+        "description": "This function offers guidance on various parenting topics, including handling situations where children disobey or misbehave."
+    },
+    {
+        "name": "general_parenting_questions",
+        "description": "This function tackles any broader questions related to parenting and raising children. Telling stories to children is also an example."
+    },
+    {
+        "name": "get_current_date_time",
+        "description": "Use this function when a user's question is about the current date and time."
+    },
+    {
+        "name": "history_question",
+        "description": "Use this function when a user's question is about history."
+    },
+    {
+        "name": "toxic_violence",
+        "description": "The user's question may potentially contain toxic, violent, or otherwise unsafe content for children."
+    },
+    {
+        "name": "sensitive_politic",
+        "description": "Use this function when a user's question is about politics."
+    }
+]
