@@ -47,23 +47,27 @@ def main():
         response = generating_model_output(conversation, model, tokenizer)
         print("Assistant:", response)
         
-        # Parse response and call appropriate function
-        if response and 'function_call' in response:
-            function_name = response['function_call']['name']
-            function_args = response['function_call'].get('arguments', {})
-            try:
-                if hasattr(fc, function_name):
-                    result = getattr(fc, function_name)(user_input, conversation)
-                    print(f"Function Output: {result}")
-                else:
-                    print(f"Function '{function_name}' not found.")
-            except Exception as e:
-                print(f"Error invoking function '{function_name}': {e}")
-
-        # Append model response to conversation history
-        conversation.append({
+        # Handle function calls in response
+        if isinstance(response, list) and len(response) > 0:
+            function_call = response[0]  # Get first function call
+            if 'name' in function_call:
+                function_name = function_call['name']
+                function_args = function_call.get('arguments', {})
+                try:
+                    if hasattr(fc, function_name):
+                        result = getattr(fc, function_name)(question=user_input, history=conversation_history)
+                        print(f"Function Output: {result}")
+                        response = result  # Use function output as response
+                    else:
+                        print(f"Function '{function_name}' not found.")
+                except Exception as e:
+                    print(f"Error invoking function '{function_name}': {e}")
+        
+        # Store response in history
+        conversation_history.append({
             "role": "assistant",
-            "content": response
+            "content": response,
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         })
 
 tools_file = "intensity.json"
@@ -119,6 +123,7 @@ def generating_model_output(conversation, model, tokenizer):
         "num_beams": 1, 
     }
     start = time.time()
+    print("Generating")
     output_1000 = model.generate(**inputs, **generation_config)
     print(f"Time for 1000 tokens: {time.time() - start:.2f} seconds")
 
