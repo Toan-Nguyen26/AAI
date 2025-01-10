@@ -1,0 +1,5 @@
+accelerate
+safetensors
+bitsandbytes
+ninja
+flash-attn
