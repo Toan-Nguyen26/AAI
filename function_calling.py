@@ -20,7 +20,7 @@ def create_base_prompt(question: str, history: List[Dict], instructions: list[st
     ])
     prompt += f"{history_str}\n\n"
     
-    prompt += "\nUse the proved history as context, answer the question based on the following guidelines:\n"
+    prompt += "\nUse the proved history as context, answer the question based on the following guidelines, and ensure that the answer is within 1000 tokens:\n"
     for i, instruction in enumerate(instructions, 1):
         prompt += f"{i}. {instruction}\n"
     return prompt
@@ -34,7 +34,7 @@ def answer_question(prompt):
                 }
             ],
             model="gpt-4o-mini",
-            max_tokens=500,  
+            max_tokens=1000,  
             temperature=0.5, 
         )
     output = chat_completion.choices[0].message.content
@@ -119,7 +119,6 @@ class FunctionCalling:
     @staticmethod
     def children_games(question, history) -> None:
         # Đề xuất các trò chơi phù hợp với độ tuổi của trẻ
-        print("wtf")
         instructions = [
             "Focus on age-appropriate game suggestions",
             "Consider safety aspects of recommended games",
