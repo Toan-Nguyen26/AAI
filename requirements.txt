@@ -3,3 +3,5 @@ safetensors
 bitsandbytes
 ninja
 flash-attn
+flask
+flask_cors
