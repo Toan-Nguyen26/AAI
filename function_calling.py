@@ -34,7 +34,7 @@ def answer_question(prompt):
                 }
             ],
             model="gpt-4o-mini",
-            max_tokens=250,  
+            max_tokens=500,  
             temperature=0.5, 
         )
     output = chat_completion.choices[0].message.content
