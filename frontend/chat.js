@@ -1,8 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
-const backendUrl = urlParams.get("api_url") || "http://localhost:8000/api/chat";
-console.log("Backend URL:", backendUrl);
-console.log("URL Parameters:", urlParams.toString());
-console.log("Full URL:", window.location.href);
+const baseUrl = urlParams.get("api_url") || "http://localhost:8000";
+const backendUrl = `${baseUrl}/api/chat`;
+
 const chatLog = document.getElementById("chat-log");
 const userInput = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
@@ -22,8 +21,43 @@ function addMessage(role, content) {
   chatLog.scrollTop = chatLog.scrollHeight;
 }
 
-// Function to format the assistant's response
 function formatResponse(response) {
+  // If response is an object, extract its "response" key (expected format)
+  if (typeof response === "object" && response.response) {
+    const responseText = response.response;
+
+    // Split the response into sections using double newlines for paragraphs
+    const sections = responseText.split(/\n\n/);
+
+    return sections
+      .map((section) => {
+        if (section.startsWith("**")) {
+          // Bold Text - Headings or emphasized text
+          return `<strong>${section.replace(
+            /\*\*(.*?)\*\*/g,
+            "$1"
+          )}</strong><br>`;
+        } else if (section.startsWith("-")) {
+          // List items
+          const items = section
+            .split("\n")
+            .filter((line) => line.startsWith("-"));
+          const listHtml = items
+            .map((item) => `<li>${item.replace(/^\-\s*/, "")}</li>`)
+            .join("");
+          return `<ul>${listHtml}</ul>`;
+        } else {
+          // Regular paragraphs
+          return `<p>${section.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+          )}</p>`;
+        }
+      })
+      .join("");
+  }
+
+  // Fallback to displaying raw JSON if no response key is found
   if (typeof response === "object") {
     return `<pre class="bg-gray-200 p-2 rounded-lg">${JSON.stringify(
       response,
@@ -31,7 +65,9 @@ function formatResponse(response) {
       2
     )}</pre>`;
   }
-  return response;
+
+  // Handle plain string responses as a fallback
+  return `<p>${response}</p>`;
 }
 
 // Function to toggle button loading state

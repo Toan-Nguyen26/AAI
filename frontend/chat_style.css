@@ -1,0 +1,31 @@
+.response-container {
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.response-container h3 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.response-container p {
+  margin: 10px 0;
+  color: #555;
+}
+
+.response-container ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: #555;
+}
+
+.response-container ul li {
+  margin-bottom: 5px;
+}

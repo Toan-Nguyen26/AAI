@@ -4,14 +4,19 @@ from openai import OpenAI
 from sentence_transformers import SentenceTransformer
 import os
 import requests
+import argparse
+
+parser = argparse.ArgumentParser(description="Run script with API key")
+parser.add_argument("--api_key", type=str, help="OpenAI API Key", required=True)
+args = parser.parse_args()
 
 client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
+    api_key=args.api_key,
 )
 
 def create_base_prompt(question: str, history: List[Dict], instructions: list[str]) -> str:
     prompt = f"Question: {question}\n\n"
-    prompt += "Below are the history provided by the user.\n"
+    prompt += "Below is the provided history for context:\n"
     
     # Convert history list to formatted string
     history_str = "\n".join([
@@ -20,31 +25,44 @@ def create_base_prompt(question: str, history: List[Dict], instructions: list[st
     ])
     prompt += f"{history_str}\n\n"
     
-    prompt += "\nUse the proved history as context, answer the question based on the following guidelines, and ensure that the answer is within 1000 tokens:\n"
+    prompt += (
+        "Use the provided history as context to answer the question. "
+        "Ensure the response meets the following guidelines:\n"
+    )
     for i, instruction in enumerate(instructions, 1):
         prompt += f"{i}. {instruction}\n"
+    
+    prompt += (
+        "\nThe response must:\n"
+        "- Be concise and within 500 tokens.\n"
+        "- Be well-structured into clear paragraphs, each addressing a specific aspect of the question.\n"
+        "- Avoid redundant or overly verbose details.\n"
+        "- Use a single newline '\\n' between paragraphs for readability.\n"
+    )
     return prompt
+
 
 def answer_question(prompt):
     chat_completion = client.chat.completions.create(
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt,
-                }
-            ],
-            model="gpt-4o-mini",
-            max_tokens=1000,  
-            temperature=0.5, 
-        )
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        model="gpt-4o-mini",  # Adjust the model if needed
+        max_tokens=500,       # Enforce token limit
+        temperature=0.5,      # Balanced randomness
+    )
     output = chat_completion.choices[0].message.content
     total_tokens = chat_completion.usage.total_tokens
     prompt_tokens = chat_completion.usage.prompt_tokens
     completion_tokens = chat_completion.usage.completion_tokens
 
-    # Print token usage
+    # Print token usage for debugging
     print(f"Token Usage: Total: {total_tokens}, Prompt: {prompt_tokens}, Completion: {completion_tokens}")
     return output
+
 
 class FunctionCalling:
     @staticmethod
