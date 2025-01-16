@@ -17,7 +17,7 @@ Kho lưu trữ này bao gồm mã nguồn và tài nguyên cho [Ứng dụng AI 
 ### Frontend
 1. Clone repository về máy tính cá nhân của bạn:
    ```bash
-   git clone https://github.com/Toan-Nguyen26/AAI
+   git clone https://github.com/Toan-Nguyen26/AAI.git
    cd repository
    ```
 2. Chạy lệnh sau để khởi động frontend (thay `<your_ngrok_url>` bằng URL Ngrok bạn nhận được từ backend):
