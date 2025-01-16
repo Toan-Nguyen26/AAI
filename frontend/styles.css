@@ -1,0 +1,87 @@
+body {
+  font-family: "Arial", sans-serif;
+}
+
+#chat-log {
+  background-color: #f9fafb;
+}
+
+#sidebar {
+  min-height: 100vh;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  position: relative;
+}
+
+#sidebar.collapsed {
+  width: 60px;
+}
+
+#sidebar-content {
+  transition: opacity 0.3s ease-in-out;
+}
+
+#sidebar.collapsed #sidebar-content,
+#sidebar.collapsed #parenting-help-container {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#toggle-sidebar {
+  margin-top: 12px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  transition: transform 0.3s ease-in-out;
+}
+
+#collapse-icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+#sidebar.collapsed #toggle-sidebar {
+  right: -20px;
+}
+
+#main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100vh; /* Full screen height */
+  width: 100%; /* Full width */
+  overflow: hidden;
+  background-size: cover; /* Cover the entire area */
+  background-position: center center;
+  transition: background-image 1s ease-in-out; /* Smooth fade between images */
+}
+
+#welcome-page {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+#welcome-page h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+#welcome-page p {
+  font-size: 1.2rem;
+}

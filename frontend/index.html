@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ParentPal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-gray-100 min-h-screen flex">
+    <!-- Sidebar -->
+    <aside
+      id="sidebar"
+      class="w-1/5 bg-blue-500 text-white flex flex-col py-6 transition-transform relative"
+    >
+      <!-- Sidebar Header -->
+      <div class="flex items-center justify-between w-full px-4">
+        <div id="parenting-help-container" class="flex-1">
+          <button
+            id="home-button"
+            class="text-2xl font-bold bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700"
+          >
+            ParentPal
+          </button>
+        </div>
+
+        <!-- Collapse Button (Always Visible) -->
+        <button
+          id="toggle-sidebar"
+          class="bg-blue-700 text-white p-2 rounded-lg hover:bg-blue-800"
+        >
+          <svg
+            id="collapse-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Sidebar Content (Collapses) -->
+      <div id="sidebar-content" class="w-full px-4 mt-8">
+        <nav class="w-full">
+          <button
+            id="chat-option"
+            class="nav-btn w-full text-left mb-4 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700"
+          >
+            Chat
+          </button>
+          <button
+            id="reviews-option"
+            class="nav-btn w-full text-left mb-4 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700"
+          >
+            Reviews
+          </button>
+          <button
+            id="credits-option"
+            class="nav-btn w-full text-left px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700"
+          >
+            Credits
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <main
+      class="flex-1 flex flex-col items-center justify-center p-6"
+      id="main-content"
+    >
+      <div id="welcome-page">
+        <h1>ParentPal</h1>
+        <p>Your trusted companion in raising amazing kids!</p>
+      </div>
+
+      <!-- Chat Section -->
+      <div
+        id="chat-section"
+        class="hidden w-full max-w-2xl p-6 bg-white shadow-md rounded-lg transition-opacity duration-300"
+      >
+        <h1 class="page-title text-2xl font-bold text-gray-800 mb-4">Chat</h1>
+        <div
+          id="chat-log"
+          class="overflow-y-auto h-96 border rounded-lg p-4 bg-gray-50"
+        >
+          <!-- Chat messages will appear here -->
+        </div>
+        <div class="mt-4">
+          <textarea
+            id="user-input"
+            rows="3"
+            placeholder="Type your message here..."
+            class="w-full p-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+          ></textarea>
+          <button
+            id="send-btn"
+            class="mt-2 w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50 flex items-center justify-center"
+          >
+            <span>Send</span>
+            <svg
+              id="loading-spinner"
+              class="ml-2 w-5 h-5 animate-spin hidden"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Reviews Section -->
+      <div
+        id="reviews-section"
+        class="hidden w-full max-w-2xl p-6 bg-white shadow-md rounded-lg transition-opacity duration-300"
+      >
+        <h1 class="page-title text-2xl font-bold text-gray-800 mb-4">
+          Reviews
+        </h1>
+        <ul class="space-y-4">
+          <li class="bg-gray-100 p-4 rounded-lg shadow">
+            <p>
+              <strong>🏋️‍♂️ Noel Deyzel:</strong> Amazing site! Helped me so much
+              in my parenting journey! The tips and insights I’ve gotten here
+              have truly been invaluable. It’s like having a supportive friend
+              who always has the answers! ⭐⭐⭐⭐⭐
+            </p>
+          </li>
+          <li class="bg-gray-100 p-4 rounded-lg shadow">
+            <p>
+              <strong>🏀 Lebron James:</strong> Great tips for new parents,
+              simple but very efficient. I appreciate how straightforward and
+              practical the advice is. It’s easy to apply these tips in everyday
+              parenting scenarios, which makes a huge difference. ⭐⭐⭐⭐
+            </p>
+          </li>
+          <li class="bg-gray-100 p-4 rounded-lg shadow">
+            <p>
+              <strong>🎤 Kim Chaewon:</strong> This platform has been a
+              game-changer for me as a parent. The resources provided are
+              incredibly detailed, and the advice is thoughtful. However, I wish
+              the responses came faster during busy times. It’s CRAZY how much
+              this has helped me manage day-to-day parenting challenges! Highly
+              recommended, but room for improvement. ⭐⭐⭐⭐
+            </p>
+          </li>
+          <li class="bg-gray-100 p-4 rounded-lg shadow">
+            <p>
+              <strong>🎩 Hieronymus Bosch:</strong> Useful resources, but could
+              use more features, and the time to get an answer could be
+              faster... The interface is nice, but sometimes the suggestions
+              feel repetitive. It would be great if the platform provided more
+              unique insights for specific cases. ⭐⭐⭐
+            </p>
+          </li>
+          <li class="bg-gray-100 p-4 rounded-lg shadow">
+            <p>
+              <strong>📚 Alan Turing:</strong> The concept is fantastic, but
+              there’s still room for improvement. While the answers are usually
+              helpful, some responses feel generic. As a parent, I’d like more
+              tailored advice for unique situations. I’ll continue to use this
+              platform, but I hope it grows further. ⭐⭐⭐
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Credits Section -->
+      <div
+        id="credits-section"
+        class="hidden w-full max-w-2xl p-6 bg-white shadow-md rounded-lg transition-opacity duration-300"
+      >
+        <h1 class="page-title text-2xl font-bold text-gray-800 mb-4">
+          Credits
+        </h1>
+        <ul class="list-disc pl-5 space-y-2">
+          <li>Nguyễn Tiến Đạt</li>
+          <li>Đỗ Thanh Huyền</li>
+          <li>Nguyễn Hải Toàn</li>
+          <li>Nguyễn Thanh Huyền</li>
+          <li>Vũ Thùy Trang</li>
+        </ul>
+      </div>
+    </main>
+
+    <!-- Link External JavaScript -->
+    <script src="app.js"></script>
+    <script src="chat.js"></script>
+    <script src="background.js"></script>
+  </body>
+</html>
