@@ -1,17 +1,17 @@
 from typing import Optional, List, Dict
 from param_types import WeightHeightParams, AnomalyParams
 from openai import OpenAI
+from google.colab import userdata
 from sentence_transformers import SentenceTransformer
 import os
 import requests
-import argparse
 
-parser = argparse.ArgumentParser(description="Run script with API key")
-parser.add_argument("--api_key", type=str, help="OpenAI API Key", required=True)
-args = parser.parse_args()
+# client = OpenAI(
+#     api_key=os.environ.get("OPENAI_API_KEY"),
+# )
 
 client = OpenAI(
-    api_key=args.api_key,
+    api_key=userdata.get('OPENAI_API_KEY'),
 )
 
 def create_base_prompt(question: str, history: List[Dict], instructions: list[str]) -> str:
