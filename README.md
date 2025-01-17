@@ -1,6 +1,6 @@
 # ParentPal - Ứng dụng AI giúp đỡ cha mẹ trong nuôi dạy phát triền con cái
 
-Kho lưu trữ này bao gồm mã nguồn và tài nguyên cho [Ứng dụng AI giúp đỡ cha mẹ trong nuôi dạy phát triền con cá]. Dự án tích hợp một mô hình đã được huấn luyện với backend hỗ trợ gọi hàm và giao diện frontend để tương tác dễ dàng.
+Github này bao gồm mã nguồn và tài nguyên cho Ứng dụng AI giúp đỡ cha mẹ trong nuôi dạy phát triền con cái. Dự án tích hợp một mô hình đã được huấn luyện với backend hỗ trợ gọi hàm và giao diện frontend để tương tác dễ dàng.
 
 ## Liên kết
 - **Notebook Colab**: [Chạy backend và nhận URL Ngrok](https://colab.research.google.com/drive/1d0LPB5FltOf1aWLwjKE68J-PImYnzRxe?usp=sharing)
@@ -11,7 +11,9 @@ Kho lưu trữ này bao gồm mã nguồn và tài nguyên cho [Ứng dụng AI 
 ### Backend
 1. Mở notebook trên Colab thông qua liên kết đã cung cấp.
 2. Chọn môi trường **L4** trước khi chạy các cell.
-3. Chạy toàn bộ các cell trong notebook.
+3. Hãy đảm bảo uncomment model và tokenizer của mọi người lấy từ HuggingFace thay vì từ drive
+   ![image](https://github.com/user-attachments/assets/3c977cdc-1ee3-4c46-aef1-8f12e4721681)
+4. Chạy toàn bộ các cell trong notebook.
    - Ở cuối quá trình chạy, bạn sẽ nhận được một **URL Ngrok**. Sao chép URL này, nó sẽ được sử dụng để frontend giao tiếp với backend.
 
 ### Frontend
