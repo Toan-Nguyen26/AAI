@@ -18,7 +18,6 @@ def create_base_prompt(question: str, history: List[Dict], instructions: list[st
     prompt = f"Question: {question}\n\n"
     prompt += "Below is the provided history for context:\n"
     
-    # Convert history list to formatted string
     history_str = "\n".join([
         f"{entry['role']}: {entry['content']}"
         for entry in history
@@ -34,10 +33,12 @@ def create_base_prompt(question: str, history: List[Dict], instructions: list[st
     
     prompt += (
         "\nThe response must:\n"
-        "- Be concise and within 500 tokens.\n"
+        "- Be concise and within 250 tokens.\n"
         "- Be well-structured into clear paragraphs, each addressing a specific aspect of the question.\n"
         "- Avoid redundant or overly verbose details.\n"
         "- Use a single newline '\\n' between paragraphs for readability.\n"
+        "- Avoid all special formatting such as bullet points, bold text (**), italics (*), or other symbols.\n"
+        "- Contain only plain, natural language in paragraph form.\n"
     )
     return prompt
 
@@ -51,7 +52,7 @@ def answer_question(prompt):
             }
         ],
         model="gpt-4o-mini",  # Adjust the model if needed
-        max_tokens=500,       # Enforce token limit
+        max_tokens=250,       # Enforce token limit
         temperature=0.5,      # Balanced randomness
     )
     output = chat_completion.choices[0].message.content
