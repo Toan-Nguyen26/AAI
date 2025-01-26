@@ -244,3 +244,24 @@ class FunctionCalling:
         ]
         prompt = create_base_prompt(question, history, instructions)
         return answer_question(prompt) 
+    
+
+    @staticmethod
+    def check_daily_screen_time(screentime, question, history) -> None:
+        # Trả lời các câu hỏi chung về nuôi dạy con
+        param_instructions = [
+            f"Screentime: {screentime}"
+        ]
+        
+        instructions = [
+            *param_instructions,
+            "Provide evidence-based recommendations for managing screen time.",
+            "Address short-term strategies to limit excessive usage.",
+            "Discuss long-term habits to ensure balanced digital consumption.",
+            "Consider child development stages when tailoring advice.",
+            "Acknowledge family-specific dynamics, such as work-from-home needs or sibling influences.",
+            "Suggest alternative activities to reduce reliance on screens.",
+            "Emphasize open communication between parents and children about screen use.",
+        ]
+        prompt = create_base_prompt(question, history, instructions)
+        return answer_question(prompt)

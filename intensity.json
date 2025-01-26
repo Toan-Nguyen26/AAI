@@ -76,5 +76,19 @@
     {
         "name": "sensitive_politic",
         "description": "Use this function when a user's question is about politics."
+    },
+    {
+        "name": "toxic_violence",
+        "description": "The user's question may potentially contain toxic, violent, or otherwise unsafe content for children."
+    },
+    {
+        "name": "check_daily_screen_time",
+        "parameters": {
+            "screen_time_minutes": {
+                "type": "integer",
+                "description": "The number of minutes the child spends on screens daily."
+            }
+        },
+        "description": "Determine if a childs screen time is within healthy limits."
     }
 ]
